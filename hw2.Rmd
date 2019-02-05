@@ -1,0 +1,44 @@
+---
+title: "Michael Bardfield; mjb627"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+#hw2
+```{r}
+cel <- c((15 - 32) * (5/9), (-10 - 32) * (5/9))
+cel
+```
+
+```{r}
+vec200 <- rep(c(1,0), times=200)
+vec200
+```
+
+```{r}
+numPerfect <- (floor(sqrt(1001)) - ceiling(sqrt(1)) + 1)
+numPerfect 
+```
+
+```{r}
+library(ggplot2)
+#1.) Sorted hwy mpg from highest to lowest. Found the top 3 highest hwy and looked manually in the data set table to find the correspoing values to combine.
+head(sort(mpg$hwy, decreasing = TRUE), 3)
+top3 <- mpg[c(213,222,223),]
+top3
+
+#2.) Used the nrow function to find how many models have the compact class.
+numCompact <- nrow(mpg[mpg$class == "compact",])
+numCompact
+
+#3.) The graph is linear which means the relationship between the 2 variables is proportional. There are few points visible due to the fact that some points may have the same cty and hwy, so some points overlap. 
+qplot(hwy, cty, data=mpg)
+
+#4.) From the scatter plots you can see that cars from 1999 have the highest cty and hwy. When we look at the summaries we see the means are very similar with 2008 having a slighty bigger hwy, and 1999 having a slightly higher cty. However, the 3rd quartile is greater in 2008 for both hwy and cty which means the majority of the numbers are greater in the 2008 data set than 1999 data set. So from this we can conclude that in 2008 cars were more efficient. 
+qplot(cty, year, data=mpg)
+qplot(hwy, year, data=mpg)
+summary(mpg[mpg$year == 2008, c("hwy", "cty")])
+summary(mpg[mpg$year == 1999, c("hwy", "cty")])
+```
